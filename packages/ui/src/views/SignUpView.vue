@@ -95,7 +95,6 @@ const onSubmit = async () => {
         <RouterLink class="flex items-center" to="/">
           <img
             alt="logo"
-            class="mr-3"
             src="/logo.svg"
             style="height: 2.5rem; width: 2.45rem"
           />
@@ -194,9 +193,7 @@ const onSubmit = async () => {
         <div class="mt-4 text-center text-sm">
           Don't have an account?
           <RouterLink class="underline" to="/sign-in">Sign in</RouterLink>
-          <RouterLink class="p-2 text-center underline" to="/">
-            Home
-          </RouterLink>
+          <RouterLink class="ml-2 underline" to="/">Home</RouterLink>
         </div>
       </CardContent>
     </Card>
