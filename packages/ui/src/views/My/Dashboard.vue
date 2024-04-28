@@ -95,10 +95,7 @@ const fetchTendersChart = async () => {
       const data: any[] = [];
       response.data.forEach((tenderView: Tender) => {
         options.xaxis.categories.push(
-          tenderView.number
-            .split('TD/2024/')
-            // .map((o) => o.charAt(0).toUpperCase())
-            .join(''),
+          tenderView.number.split('TD/2024/').join(''),
         );
         data.push(tenderView.views);
       });
