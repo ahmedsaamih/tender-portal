@@ -1,0 +1,12 @@
+{
+  "name": "tender-portal",
+  "packageManager": "yarn@4.1.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "api": "yarn workspace @tender-portal/api",
+    "ui": "yarn workspace @tender-portal/ui"
+  }
+}

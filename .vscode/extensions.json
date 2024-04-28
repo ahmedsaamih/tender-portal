@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "dineug.vuerd-vscode",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "mikestead.dotenv",
+    "prisma.prisma",
+    "vue.volar"
+  ]
+}

@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Bid {
+  id        Int      @id @default(autoincrement())
+  tenderId  Int      @map("tendor_id")
+  vendorId  Int      @map("vendor_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  vendor    Vendor   @relation("vendors_to_bids_vendor_id", fields: [vendorId], references: [id])
+  tender    Tender   @relation("tenders_to_bids_tender_id", fields: [tenderId], references: [id])
+
+  @@map("bids")
+}
+
+model NumberSeries {
+  id         Int      @id @default(autoincrement())
+  name       String
+  series     String   @unique
+  lastNumber Int      @default(0) @map("last_number")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@index([name], map: "number_series_name_key")
+  @@map("number_series")
+}
+
+model Organization {
+  id        Int      @id @default(autoincrement())
+  name      String
+  address   String
+  createdAt DateTime @default(now()) @map("created_at")
+  tenders   Tender[] @relation("organizations_to_tenders_organization_id")
+  users     User[]   @relation("organizations_to_users_organization_id")
+
+  @@index([name], map: "organizations_name_key")
+  @@map("organizations")
+}
+
+model Tender {
+  id             Int          @id @default(autoincrement())
+  number         String       @unique
+  title          String
+  description    String
+  dueDate        DateTime     @map("due_date")
+  views          Int          @default(0)
+  organizationId Int          @map("organization_id")
+  createdAt      DateTime     @default(now()) @map("created_at")
+  updatedAt      DateTime     @default(now()) @updatedAt @map("updated_at")
+  bids           Bid[]        @relation("tenders_to_bids_tender_id")
+  organization   Organization @relation("organizations_to_tenders_organization_id", fields: [organizationId], references: [id])
+
+  @@index([title], map: "tenders_title_key")
+  @@map("tenders")
+}
+
+model User {
+  id             Int           @id @default(autoincrement())
+  name           String
+  email          String        @unique
+  password       String
+  lastLoginAt    DateTime?     @map("last_login_at")
+  type           String
+  vendorId       Int?          @map("vendor_id")
+  organizationId Int?          @map("organization_id")
+  createdAt      DateTime      @default(now()) @map("created_at")
+  updatedAt      DateTime      @default(now()) @updatedAt @map("updated_at")
+  vendor         Vendor?       @relation("vendors_to_users_vendor_id", fields: [vendorId], references: [id])
+  organization   Organization? @relation("organizations_to_users_organization_id", fields: [organizationId], references: [id])
+
+  @@index([name], map: "users_name_key")
+  @@map("users")
+}
+
+model Vendor {
+  id              Int      @id @default(autoincrement())
+  name            String
+  registration_no String
+  status          String   @default("pending")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+  bids            Bid[]    @relation("vendors_to_bids_vendor_id")
+  users           User[]   @relation("vendors_to_users_vendor_id")
+
+  @@index([name], map: "vendors_name_key")
+  @@map("vendors")
+}
