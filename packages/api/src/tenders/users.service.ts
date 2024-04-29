@@ -8,7 +8,7 @@ export class UsersService {
 
   async findAll(query: string): Promise<any[]> {
     return await this.prisma.user.findMany({
-      orderBy: { id: 'desc' },
+      orderBy: { id: 'asc' },
       where: {
         OR: query
           ? [{ name: { contains: query } }, { email: { contains: query } }]

@@ -26,6 +26,7 @@ const { user } = useAuthStore();
 let loading = ref(false);
 let query = ref<string>('');
 let users = ref<Users[]>();
+let vendor = ref<Vendor[]>();
 let organization = ref<Organization[]>();
 
 const fetchUsers = async () => {
@@ -82,7 +83,6 @@ onMounted(() => {
                 <TableHead class="w-auto text-left">Name</TableHead>
                 <TableHead class="text-left">Email</TableHead>
                 <TableHead class="text-left">Registration No.</TableHead>
-                <TableHead class="text-right">Last Logged In</TableHead>
                 <TableHead class="text-right">Registered on</TableHead>
               </TableRow>
             </TableHeader>
@@ -92,9 +92,6 @@ onMounted(() => {
                 <TableCell class="text-left">{{ user.email }}</TableCell>
                 <TableCell class="text-left">{{
                   user.vendor?.registration_no
-                }}</TableCell>
-                <TableCell class="text-right">{{
-                  formatDate(user.lastLoginAt)
                 }}</TableCell>
                 <TableCell class="text-right">{{
                   formatDate(user.createdAt)
@@ -111,7 +108,6 @@ onMounted(() => {
             <TableHeader>
               <TableRow>
                 <TableHead class="text-left">Name</TableHead>
-                <TableHead class="text-left">ORG ID</TableHead>
                 <TableHead class="text-left">Email</TableHead>
                 <TableHead class="text-right">Last Logged In</TableHead>
                 <TableHead class="text-right">Registered on</TableHead>
