@@ -79,7 +79,7 @@ export type Stats = {
 export type Vendor = {
   id: number;
   name: string;
-  registrationNo: string;
+  registration_no: string;
   status: 'active' | 'pending';
   createdAt: string;
   updatedAt: string;
