@@ -84,11 +84,11 @@ const testfunc = async () => {
 
   <!-- //starting form -->
   <div class="mx-auto max-w-screen-xl px-4 pb-2 pt-0 lg:px-12 lg:pb-0">
-    <Tabs default-value="Send a Message" class="w-full text-left">
+    <Tabs default-value="message" class="w-full text-left">
       <TabsList class="grid w-full grid-cols-1">
-        <TabsTrigger value="account"> Send a Message </TabsTrigger>
+        <TabsTrigger value="message"> Send a Message </TabsTrigger>
       </TabsList>
-      <TabsContent value="account">
+      <TabsContent value="message">
         <Card>
           <CardHeader>
             <CardTitle>Send a message.</CardTitle>
