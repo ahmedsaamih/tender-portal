@@ -118,11 +118,15 @@ fetchTender();
         <p class="mb-6 text-lg text-muted-foreground">
           {{ tender.description }}
         </p>
-        <img
+        <embed
+          src="../src/assets/sample.pdf"
+          class="mb-6 h-[90vh] w-full rounded-lg object-cover"
+        />
+        <!-- <img
           alt="tender"
           class="mb-6 w-full rounded-lg object-cover"
           :src="`https://placehold.co/800x400/?text=${tender.title}`"
-        />
+        /> -->
       </div>
 
       <Card class="sticky top-6 hidden min-w-[325px] lg:block">
